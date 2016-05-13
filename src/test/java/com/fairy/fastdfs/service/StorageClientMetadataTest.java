@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 /**
  * Metadata操作演示
  * 
- * @author tobato
+ * @author andongxu
  *
  */
 public class StorageClientMetadataTest extends FastdfsTest {

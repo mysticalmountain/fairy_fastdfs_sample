@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 /**
  * unit test for TrackerClientService
  * 
- * @author tobato
+ * @author andongxu
  *
  */
 

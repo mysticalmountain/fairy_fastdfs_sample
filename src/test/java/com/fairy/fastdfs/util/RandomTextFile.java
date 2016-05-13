@@ -7,7 +7,7 @@ import java.io.InputStream;
 /**
  * 测试用随机字符文件
  * 
- * @author tobato
+ * @author andongxu
  *
  */
 public class RandomTextFile {

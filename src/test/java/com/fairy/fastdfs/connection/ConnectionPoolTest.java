@@ -15,7 +15,7 @@ import static org.junit.Assert.assertFalse;
 /**
  * 连接池创建测试
  * 
- * @author tobato
+ * @author andongxu
  *
  */
 public class ConnectionPoolTest {

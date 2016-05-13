@@ -17,7 +17,7 @@ import static org.junit.Assert.assertNotNull;
 /**
  * 文件基础操作测试演示
  * 
- * @author tobato
+ * @author andongxu
  *
  */
 public class StorageClientBasicTest extends FastdfsTest {

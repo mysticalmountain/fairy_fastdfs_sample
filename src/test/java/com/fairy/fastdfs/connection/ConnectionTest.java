@@ -14,7 +14,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * socket连接测试
  * 
- * @author tobato
+ * @author andongxu
  *
  */
 public class ConnectionTest  {

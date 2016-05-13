@@ -24,7 +24,7 @@ import static org.junit.Assert.assertNotNull;
 /**
  * 测试驱动类
  *
- * @author tobato
+ * @author andongxu
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {FastdfsTest.class})

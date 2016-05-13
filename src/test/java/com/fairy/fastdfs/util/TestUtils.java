@@ -6,7 +6,7 @@ import java.net.URL;
 /**
  * 测试工具类
  * 
- * @author tobato
+ * @author andongxu
  *
  */
 public class TestUtils {
