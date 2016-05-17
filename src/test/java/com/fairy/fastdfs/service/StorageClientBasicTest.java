@@ -40,7 +40,7 @@ public class StorageClientBasicTest extends FastdfsTest {
         //第一个参数group,告诉fdfs将文件上传到那个volume,不传由fdfs自动分配
         //第二个参数文件字节数，fdfs读到这个字节数就结束了
         //第三个参数文件扩展名
-        //上传成功后必须将文件所属group和文件名称存储，文件下载时需要使用
+        //上传成功后必须将文件所属group和文件名称存储，文件下载时需要使用，此方法不设置group参数由fastdfs自动分配
         StorePath path = storageClient.uploadFile(null, is, file.length(), extendName);
         is.close();
         assertNotNull(path);
