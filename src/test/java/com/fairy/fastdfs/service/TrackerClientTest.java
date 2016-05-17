@@ -7,6 +7,7 @@ import com.github.tobato.fastdfs.domain.StorageNode;
 import com.github.tobato.fastdfs.domain.StorageState;
 import com.github.tobato.fastdfs.exception.FdfsServerException;
 import com.github.tobato.fastdfs.proto.ErrorCodeConstants;
+import com.github.tobato.fastdfs.service.TrackerClient;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

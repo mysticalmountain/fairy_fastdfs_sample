@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -28,11 +29,20 @@ import static org.junit.Assert.assertNotNull;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {FastdfsTest.class})
+@Configuration
 public class FastdfsTest {
 
     @Bean
-    public TrackerConnectionManager trackerConnectionManager() {
-        TrackerConnectionManager trackerConnectionManager = new TrackerConnectionManager();
+    public FdfsConnectionPool fdfsConnectionPool() {
+        PooledConnectionFactory factory = new PooledConnectionFactory();
+        factory.setConnectTimeout(Config.connectTimeout);
+        factory.setSoTimeout(Config.soTimeout);
+        return new FdfsConnectionPool(factory);
+    }
+
+    @Bean
+    public TrackerConnectionManager trackerConnectionManager(FdfsConnectionPool fdfsConnectionPool ) {
+        TrackerConnectionManager trackerConnectionManager = new TrackerConnectionManager(fdfsConnectionPool);
         List<String> trackerList = new ArrayList();
         trackerList.add(Config.address);
         trackerConnectionManager.setTrackerList(trackerList);
@@ -41,31 +51,24 @@ public class FastdfsTest {
     }
 
     @Bean
-    private FdfsConnectionPool fdfsConnectionPool() {
-        PooledConnectionFactory factory = new PooledConnectionFactory();
-        factory.setConnectTimeout(Config.connectTimeout);
-        factory.setSoTimeout(Config.soTimeout);
-        return new FdfsConnectionPool(factory);
-    }
-
-
-    @Bean
     public TrackerClient trackerClient() {
-        return new DefaultTrackerClient();
+        DefaultTrackerClient trackerClient =  new DefaultTrackerClient();
+        return trackerClient;
     }
 
     @Bean
-    public AppendFileStorageClient storageClient() {
-        return new DefaultAppendFileStorageClient();
+    public AppendFileStorageClient storageClient(TrackerClient trackerClient) {
+        DefaultAppendFileStorageClient storageClient =  new DefaultAppendFileStorageClient();
+        storageClient.setTrackerClientService(trackerClient);
+        return storageClient;
     }
-
 
     @Autowired
-    public ApplicationContext context;
+    protected ApplicationContext context;
 
     @Autowired
     protected AppendFileStorageClient storageClient;
 
-    @Resource
+    @Autowired
     protected TrackerClient trackerClient;
 }
